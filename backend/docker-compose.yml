@@ -1,0 +1,19 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./build/Dockerfile
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - db
+  db:
+    image: mysql:9.2.0
+    env_file:
+      - .env
+    volumes:
+      - ./data/db:/var/lib/mysql

@@ -7,9 +7,9 @@ type Priority struct {
 }
 
 const (
-	PriorityLow    = "low"
-	PriorityMiddle = "middle"
-	PriorityHigh   = "high"
+	PriorityLow    = "LOW"
+	PriorityMiddle = "MIDDLE"
+	PriorityHigh   = "HIGH"
 )
 
 func NewPriority(priority string) (Priority, error) {

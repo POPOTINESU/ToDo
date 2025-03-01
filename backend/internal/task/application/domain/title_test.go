@@ -2,10 +2,17 @@ package domain_test
 
 import (
 	"ToDo/internal/task/application/domain"
+	"fmt"
+	"strings"
 	"testing"
 )
 
+
+
+
 func TestNewTitle(t *testing.T) {
+	var maxTitle = strings.Repeat("a", domain.MAX_TITLE_LENGTH)
+
 	data := []struct {
 		testName string
 		value    string
@@ -13,14 +20,17 @@ func TestNewTitle(t *testing.T) {
 		errMsg   string
 	}{
 		{"create title object", "test title", "test title", ""},
+		{"cannot create empty title", "", "", "title must not empty"},
+		{"too long title", maxTitle + "a", "", fmt.Sprintf("title must be at most %d characters", domain.MAX_TITLE_LENGTH)},
+		{"max length title", maxTitle, maxTitle, ""},
 	}
 
 	for _, d := range data {
 		t.Run(d.testName, func(t *testing.T) {
-			result, err :=  domain.NewTitle(d.value)
+			result, err := domain.NewTitle(d.value)
 
-			if result.Value() != d.expected {
-				t.Errorf("期待する結果 %s, 得られた結果 %s", d.expected, result)
+			if d.expected != result.Value() {
+				t.Errorf("期待する結果 %s, 得られた結果 %s", d.expected, result.Value())
 			}
 
 			var errMsg string
@@ -28,7 +38,7 @@ func TestNewTitle(t *testing.T) {
 				errMsg = err.Error()
 			}
 
-			if errMsg != d.errMsg {
+			if d.errMsg != errMsg {
 				t.Errorf("予想されたエラーメッセージ %s, 得られたメッセージ %s", d.errMsg, errMsg)
 			}
 		})

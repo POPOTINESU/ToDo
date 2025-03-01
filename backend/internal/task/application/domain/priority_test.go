@@ -12,9 +12,9 @@ func TestNewPriority(t *testing.T) {
 		expected string
 		errMsg string
 	}  {
-		{"create low priority object", "low", "low", ""},
-		{"create middle priority object", "low", "low", ""},
-		{"create high object", "high", "high", ""},
+		{"create low priority object", domain.PriorityLow, domain.PriorityLow, ""},
+		{"create middle priority object", domain.PriorityMiddle, domain.PriorityMiddle, ""},
+		{"create high object", domain.PriorityHigh, domain.PriorityHigh, ""},
 		{"cannot create empty priority", "", "", "priority must not be empty"},
 		{"unexpected word", "unexpected priority", "", "unexpected priority value"},
 	}

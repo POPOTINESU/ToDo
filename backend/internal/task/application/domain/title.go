@@ -12,8 +12,7 @@ type Title struct {
 }
 
 func NewTitle(title string) (Title, error) {
-	err := validateTitle(title)
-	if err != nil {
+	if err := validateTitle(title); err != nil {
 		return Title{}, err
 	}
 

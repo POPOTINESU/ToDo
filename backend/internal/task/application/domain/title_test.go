@@ -1,6 +1,7 @@
 package domain_test
 
 import (
+	"ToDo/internal/task/application/domain"
 	"testing"
 )
 
@@ -16,9 +17,9 @@ func TestNewTitle(t *testing.T) {
 
 	for _, d := range data {
 		t.Run(d.testName, func(t *testing.T) {
-			result, err := NewTitle(d.value, d.expected)
+			result, err :=  domain.NewTitle(d.value)
 
-			if result != d.expected {
+			if result.Value() != d.expected {
 				t.Errorf("期待する結果 %s, 得られた結果 %s", d.expected, result)
 			}
 

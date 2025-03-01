@@ -15,6 +15,8 @@ func TestNewPriority(t *testing.T) {
 		{"create low priority object", "low", "low", ""},
 		{"create middle priority object", "low", "low", ""},
 		{"create high object", "high", "high", ""},
+		{"cannot create empty priority", "", "", "priority must not be empty"},
+		{"unexpected word", "unexpected priority", "", "unexpected priority value"},
 	}
 
 	for _, d := range data {

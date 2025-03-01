@@ -2,10 +2,14 @@ package domain_test
 
 import (
 	"ToDo/internal/task/application/domain"
+	"fmt"
+	"strings"
 	"testing"
 )
 
 func TestNewDescription(t *testing.T) {
+	var maxDescription = strings.Repeat("a", domain.MAX_DESCRIPTION_LENGTH)
+
 	data := []struct {
 		testName string
 		value string
@@ -13,6 +17,9 @@ func TestNewDescription(t *testing.T) {
 		errMsg string
 	} {
 		{"create description object", "test description", "test description", ""},
+		{"cannot create empty description", "", "", "description must not be empty"},
+		{"too long description", maxDescription + "a", "", fmt.Sprintf("description must be at most %d characters", domain.MAX_DESCRIPTION_LENGTH)},
+		{"max length description", maxDescription, maxDescription, ""},
 	}
 
 	for _, d := range data {

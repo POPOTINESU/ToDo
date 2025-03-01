@@ -32,6 +32,6 @@ func validateTitle(title string) error {
 	return nil
 }
 
-func (t *Title) Value() string {
+func (t Title) Value() string {
 	return t.value
 }

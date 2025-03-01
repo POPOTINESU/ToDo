@@ -1,14 +1,12 @@
 package domain_test
 
 import (
-	"ToDo/internal/task/application/domain"
 	"fmt"
 	"strings"
 	"testing"
+
+	"ToDo/internal/task/application/domain"
 )
-
-
-
 
 func TestNewTitle(t *testing.T) {
 	var maxTitle = strings.Repeat("a", domain.MAX_TITLE_LENGTH)
@@ -20,7 +18,7 @@ func TestNewTitle(t *testing.T) {
 		errMsg   string
 	}{
 		{"create title object", "test title", "test title", ""},
-		{"cannot create empty title", "", "", "title must not empty"},
+		{"cannot create empty title", "", "", "title must not be empty"},
 		{"too long title", maxTitle + "a", "", fmt.Sprintf("title must be at most %d characters", domain.MAX_TITLE_LENGTH)},
 		{"max length title", maxTitle, maxTitle, ""},
 	}

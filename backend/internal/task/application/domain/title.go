@@ -12,7 +12,7 @@ type Title struct {
 }
 
 func NewTitle(title string) (Title, error) {
-	err := validate(title)
+	err := validateTitle(title)
 	if err != nil {
 		return Title{}, err
 	}
@@ -21,7 +21,7 @@ func NewTitle(title string) (Title, error) {
 	return Title{value: title}, nil
 }
 
-func validate(title string) error {
+func validateTitle(title string) error {
 	if title == "" {
 		return errors.New("title must not be empty")
 	}

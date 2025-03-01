@@ -38,7 +38,7 @@ func TestNewTask(t *testing.T) {
 				if err == nil {
 					t.Errorf("Expected error but got none")
 				} else {
-					t.Logf("unexpected error %v", err)
+					t.Logf("Unexpected error %v", err)
 				}
 			} else {
 				if err != nil {
@@ -59,4 +59,37 @@ func TestNewTask(t *testing.T) {
 			}
 		})
 	}
+}
+
+
+func TestEqual(t *testing.T) {
+	task1, _ := domain.NewTask(
+		nil,
+		"title",
+		"description",
+		domain.PriorityLow,
+		domain.StageTodo,
+	)
+
+	task2, _ := domain.NewTask(
+		nil,
+		"title",
+		"description",
+		domain.PriorityLow,
+		domain.StageTodo,
+	)
+
+	t.Run("Same task", func(t *testing.T) {
+		result := task1.Equal(&task1)
+		if result != true {
+			t.Errorf("Expected result %v, got %v", true, result)
+		}
+	})
+
+	t.Run("Not same task", func (t *testing.T)  {
+		result := task1.Equal(&task2)
+		if result != false {
+			t.Errorf("Expected result %v, got %v", false, result)
+		}
+	})
 }

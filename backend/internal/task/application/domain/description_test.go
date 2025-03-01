@@ -16,10 +16,10 @@ func TestNewDescription(t *testing.T) {
 		expected string
 		errMsg string
 	} {
-		{"create description object", "test description", "test description", ""},
-		{"cannot create empty description", "", "", "description must not be empty"},
-		{"too long description", maxDescription + "a", "", fmt.Sprintf("description must be at most %d characters", domain.MAX_DESCRIPTION_LENGTH)},
-		{"max length description", maxDescription, maxDescription, ""},
+		{"Create description object", "test description", "test description", ""},
+		{"Cannot create empty description", "", "", "description must not be empty"},
+		{"Too long description", maxDescription + "a", "", fmt.Sprintf("description must be at most %d characters", domain.MAX_DESCRIPTION_LENGTH)},
+		{"Max length description", maxDescription, maxDescription, ""},
 	}
 
 	for _, d := range data {

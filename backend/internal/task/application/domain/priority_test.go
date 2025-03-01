@@ -12,11 +12,11 @@ func TestNewPriority(t *testing.T) {
 		expected string
 		errMsg string
 	}  {
-		{"create low priority object", domain.PriorityLow, domain.PriorityLow, ""},
-		{"create middle priority object", domain.PriorityMiddle, domain.PriorityMiddle, ""},
-		{"create high object", domain.PriorityHigh, domain.PriorityHigh, ""},
-		{"cannot create empty priority", "", "", "priority must not be empty"},
-		{"unexpected word", "unexpected priority", "", "unexpected priority value"},
+		{"Create low priority object", domain.PriorityLow, domain.PriorityLow, ""},
+		{"Create middle priority object", domain.PriorityMiddle, domain.PriorityMiddle, ""},
+		{"Create high object", domain.PriorityHigh, domain.PriorityHigh, ""},
+		{"Cannot create empty priority", "", "", "priority must not be empty"},
+		{"Unexpected word", "unexpected priority", "", "unexpected priority value"},
 	}
 
 	for _, d := range data {

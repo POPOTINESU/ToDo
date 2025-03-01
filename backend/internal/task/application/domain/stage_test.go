@@ -12,11 +12,11 @@ func TestNewStage(t * testing.T) {
 		expected string
 		errMsg string
 	} {
-		{"create TODO stage", domain.StageTodo, domain.StageTodo, ""},
-		{"create In Progress stage", domain.StageInProgress, domain.StageInProgress, ""},
-		{"create Done", domain.StageDone, domain.StageDone, ""},
-		{"cannot create empty stage", "", "", "stage must not be empty"},
-		{"unexpected word", "unexpected stage", "", "unexpected stage value"},
+		{"Create TODO stage", domain.StageTodo, domain.StageTodo, ""},
+		{"Create In Progress stage", domain.StageInProgress, domain.StageInProgress, ""},
+		{"Create Done", domain.StageDone, domain.StageDone, ""},
+		{"Cannot create empty stage", "", "", "stage must not be empty"},
+		{"Unexpected word", "unexpected stage", "", "unexpected stage value"},
 	}
 
 	for _, d := range data {

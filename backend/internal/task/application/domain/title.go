@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-const MAX_TITLE_LENGTH = 20
+const MaxTitleLength = 20
 
 type Title struct {
 	value string
@@ -25,8 +25,8 @@ func validateTitle(title string) error {
 		return errors.New("title must not be empty")
 	}
 
-	if len(title) > MAX_TITLE_LENGTH {
-		return fmt.Errorf(fmt.Sprintf("title must be at most %d characters", MAX_TITLE_LENGTH))
+	if len(title) > MaxTitleLength {
+		return fmt.Errorf(fmt.Sprintf("title must be at most %d characters", MaxTitleLength))
 	}
 
 	return nil

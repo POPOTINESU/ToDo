@@ -9,7 +9,7 @@ import (
 )
 
 func TestNewTitle(t *testing.T) {
-	var maxTitle = strings.Repeat("a", domain.MAX_TITLE_LENGTH)
+	var maxTitle = strings.Repeat("a", domain.MaxTitleLength)
 
 	data := []struct {
 		testName string
@@ -19,7 +19,7 @@ func TestNewTitle(t *testing.T) {
 	}{
 		{"create title object", "test title", "test title", ""},
 		{"cannot create empty title", "", "", "title must not be empty"},
-		{"too long title", maxTitle + "a", "", fmt.Sprintf("title must be at most %d characters", domain.MAX_TITLE_LENGTH)},
+		{"too long title", maxTitle + "a", "", fmt.Sprintf("title must be at most %d characters", domain.MaxTitleLength)},
 		{"max length title", maxTitle, maxTitle, ""},
 	}
 

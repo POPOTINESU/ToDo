@@ -25,7 +25,7 @@ func validateTitle(title string) error {
 	}
 
 	if len(title) > MaxTitleLength {
-		return fmt.Errorf(fmt.Sprintf("title must be at most %d characters", MaxTitleLength))
+		return fmt.Errorf("title must be at most %d characters", MaxTitleLength)
 	}
 
 	return nil

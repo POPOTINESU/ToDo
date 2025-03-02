@@ -27,7 +27,7 @@ func validateDescription(description string) error {
 	}
 
 	if len(description) > MaxDescriptionLength {
-		return fmt.Errorf(fmt.Sprintf("description must be at most %d characters", MaxDescriptionLength))
+		return fmt.Errorf("description must be at most %d characters", MaxDescriptionLength)
 	}
 
 	return nil

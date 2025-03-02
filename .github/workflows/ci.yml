@@ -51,7 +51,9 @@ jobs:
       
       - name: Update mocks
         run: make generate
+        working-directory: backend
 
       - name: Run Unit Tests
         if: ${{ env.TEST_PACKAGES != '' }}
         run: go test ${{ env.TEST_PACKAGES }} -v -cover -coverprofile=coverage.out
+        working-directory: backend

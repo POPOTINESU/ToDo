@@ -1,3 +1,5 @@
+//go:generate mockgen -source=tx_manager.go -typed=true -destination=./mocks/tx_manager_mock.go
+
 package pkg
 
 import "context"

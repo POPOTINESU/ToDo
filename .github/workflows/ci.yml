@@ -4,12 +4,15 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'backend/**/*.go'
 
 permissions:
   contents: read
 
 env:
-  GO_VERSION: "^1.23"
+  GO_VERSION: '^1.23'
+  TEST_PACKAGES: ''
 
 jobs:
   ci-go-lint:
@@ -21,10 +24,31 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: ${{env.GO_VERSION}}
+          go-version: ${{ env.GO_VERSION }}
+
       - name: Install golangci-lint
         uses: golangci/golangci-lint-action@v6
         with:
           version: latest
           args: ./...
-          working-directory: backend 
+          working-directory: backend
+
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - name: Get test packages excluding tests folder
+        run: |
+          TEST_PACKAGES=$(go list ./... | grep -v '/tests/' || echo "")
+          echo "TEST_PACKAGES=$TEST_PACKAGES" >> $GITHUB_ENV
+
+      - name: Run Unit Tests
+        if: ${{ env.TEST_PACKAGES != '' }}
+        run: go test ${{ env.TEST_PACKAGES }} -v -cover -coverprofile=coverage.out

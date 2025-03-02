@@ -6,6 +6,8 @@ import (
 	"testing"
 
 	"ToDo/internal/task/application/domain"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestNewTitle(t *testing.T) {
@@ -31,13 +33,13 @@ func TestNewTitle(t *testing.T) {
 				t.Errorf("期待する結果 %s, 得られた結果 %s", d.expected, result.Value())
 			}
 
-			var errMsg string
-			if err != nil {
-				errMsg = err.Error()
-			}
+			assert.Equal(t, d.expected, result.Value(), "Unexpected title value")
 
-			if d.errMsg != errMsg {
-				t.Errorf("予想されたエラーメッセージ %s, 得られたメッセージ %s", d.errMsg, errMsg)
+			if d.errMsg == "" {
+				assert.NoError(t, err)
+			} else {
+				assert.Error(t, err)
+				assert.EqualError(t, err, d.errMsg)
 			}
 		})
 	}

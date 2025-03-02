@@ -6,15 +6,15 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestNewTask(t *testing.T) {
 	taskID, err := uuid.NewV7()
-	if err != nil {
-		t.Fatalf("Failed to generate UUIDv7: %v", err)
-	}
+	assert.NoError(t, err, "Failed to generate UUIDv7")
+
 	data := []struct {
-		testName    string
+		name        string
 		id          *uuid.UUID
 		title       string
 		description string
@@ -31,31 +31,17 @@ func TestNewTask(t *testing.T) {
 	}
 
 	for _, d := range data {
-		t.Run(d.testName, func(t *testing.T) {
+		t.Run(d.name, func(t *testing.T) {
 			task, err := domain.NewTask(d.id, d.title, d.description, d.priority, d.stage)
 
 			if d.expectErr {
-				if err == nil {
-					t.Errorf("Expected error but got none")
-				} else {
-					t.Logf("Unexpected error %v", err)
-				}
+				assert.Error(t, err)
 			} else {
-				if err != nil {
-					t.Errorf("Unexpected error: %v", err)
-				}
-				if task.Title().Value() != d.title {
-					t.Errorf("Expected title %s, got %s", d.title, task.Title().Value())
-				}
-				if task.Description().Value() != d.description {
-					t.Errorf("Expected description %s, got %s", d.description, task.Description().Value())
-				}
-				if task.Priority().Value() != d.priority {
-					t.Errorf("Expected priority %s, got %s", d.priority, task.Priority().Value())
-				}
-				if task.Stage().Value() != d.stage {
-					t.Errorf("Expected stage %s, got %s", d.stage, task.Stage().Value())
-				}
+				assert.NoError(t, err)
+				assert.Equal(t, d.title, task.Title().Value())
+				assert.Equal(t, d.description, task.Description().Value())
+				assert.Equal(t, d.priority, task.Priority().Value())
+				assert.Equal(t, d.stage, task.Stage().Value())
 			}
 		})
 	}
@@ -79,16 +65,10 @@ func TestEqual(t *testing.T) {
 	)
 
 	t.Run("Same task", func(t *testing.T) {
-		result := task1.Equal(&task1)
-		if result != true {
-			t.Errorf("Expected result %v, got %v", true, result)
-		}
+		assert.True(t, task1.Equal(&task1))
 	})
 
 	t.Run("Not same task", func(t *testing.T) {
-		result := task1.Equal(&task2)
-		if result != false {
-			t.Errorf("Expected result %v, got %v", false, result)
-		}
+		assert.False(t, task1.Equal(&task2))
 	})
 }

@@ -3,6 +3,8 @@ package domain_test
 import (
 	"ToDo/internal/task/application/domain"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestNewStage(t *testing.T) {
@@ -23,17 +25,13 @@ func TestNewStage(t *testing.T) {
 		t.Run(d.testName, func(t *testing.T) {
 			result, err := domain.NewStage(d.value)
 
-			if d.expected != result.Value() {
-				t.Errorf("期待する結果 %s, 得られた結果 %s", d.expected, result.Value())
-			}
+			assert.Equal(t, d.expected, result.Value(), "Unexpected stage value")
 
-			var errMsg string
-			if err != nil {
-				errMsg = err.Error()
-			}
-
-			if d.errMsg != errMsg {
-				t.Errorf("予想されたエラーメッセージ %s, 得られたメッセージ %s", d.errMsg, errMsg)
+			if d.errMsg == "" {
+				assert.NoError(t, err)
+			} else {
+				assert.Error(t, err)
+				assert.EqualError(t, err, d.errMsg)
 			}
 		})
 	}

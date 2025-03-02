@@ -8,10 +8,10 @@ import (
 func TestNewPriority(t *testing.T) {
 	data := []struct {
 		testName string
-		value string
+		value    string
 		expected string
-		errMsg string
-	}  {
+		errMsg   string
+	}{
 		{"Create low priority object", domain.PriorityLow, domain.PriorityLow, ""},
 		{"Create middle priority object", domain.PriorityMiddle, domain.PriorityMiddle, ""},
 		{"Create high object", domain.PriorityHigh, domain.PriorityHigh, ""},

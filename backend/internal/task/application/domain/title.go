@@ -16,7 +16,6 @@ func NewTitle(title string) (Title, error) {
 		return Title{}, err
 	}
 
-
 	return Title{value: title}, nil
 }
 

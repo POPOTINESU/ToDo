@@ -12,7 +12,7 @@ type Description struct {
 }
 
 func NewDescription(description string) (Description, error) {
-	if err := validateDescription(description); err != nil  {
+	if err := validateDescription(description); err != nil {
 		return Description{}, err
 	}
 

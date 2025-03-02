@@ -11,7 +11,7 @@ import (
 func TestNewTask(t *testing.T) {
 	taskID, err := uuid.NewV7()
 	if err != nil {
-		t.Fatalf("Failed to generate UUIDv7: %v", err) 
+		t.Fatalf("Failed to generate UUIDv7: %v", err)
 	}
 	data := []struct {
 		testName    string
@@ -61,7 +61,6 @@ func TestNewTask(t *testing.T) {
 	}
 }
 
-
 func TestEqual(t *testing.T) {
 	task1, _ := domain.NewTask(
 		nil,
@@ -86,7 +85,7 @@ func TestEqual(t *testing.T) {
 		}
 	})
 
-	t.Run("Not same task", func (t *testing.T)  {
+	t.Run("Not same task", func(t *testing.T) {
 		result := task1.Equal(&task2)
 		if result != false {
 			t.Errorf("Expected result %v, got %v", false, result)

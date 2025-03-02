@@ -12,10 +12,10 @@ func TestNewDescription(t *testing.T) {
 
 	data := []struct {
 		testName string
-		value string
+		value    string
 		expected string
-		errMsg string
-	} {
+		errMsg   string
+	}{
 		{"Create description object", "test description", "test description", ""},
 		{"Cannot create empty description", "", "", "description must not be empty"},
 		{"Too long description", maxDescription + "a", "", fmt.Sprintf("description must be at most %d characters", domain.MAX_DESCRIPTION_LENGTH)},

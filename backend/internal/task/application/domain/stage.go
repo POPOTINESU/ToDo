@@ -3,9 +3,9 @@ package domain
 import "errors"
 
 const (
-	StageTodo = "TODO"
+	StageTodo       = "TODO"
 	StageInProgress = "IN_PROGRESS"
-	StageDone = "Done"
+	StageDone       = "Done"
 )
 
 type Stage struct {
@@ -17,7 +17,7 @@ func NewStage(stage string) (Stage, error) {
 		return Stage{}, err
 	}
 
-	return Stage{value:  stage}, nil
+	return Stage{value: stage}, nil
 }
 
 func validateStage(stage string) error {

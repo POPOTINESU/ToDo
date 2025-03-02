@@ -31,6 +31,6 @@ func validatePriority(priority string) error {
 	}
 }
 
-func(p Priority) Value() string {
+func (p Priority) Value() string {
 	return p.value
 }

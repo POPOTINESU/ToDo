@@ -3,11 +3,11 @@ package domain
 import "github.com/google/uuid"
 
 type Task struct {
-	id uuid.UUID
-	title Title
+	id          uuid.UUID
+	title       Title
 	description Description
-	priority Priority
-	stage Stage
+	priority    Priority
+	stage       Stage
 }
 
 func NewTask(
@@ -16,7 +16,7 @@ func NewTask(
 	description string,
 	priority string,
 	stage string,
-) (Task, error){
+) (Task, error) {
 	var taskID uuid.UUID
 	if id == nil {
 		newID, err := uuid.NewV7()
@@ -46,11 +46,11 @@ func NewTask(
 	}
 
 	return Task{
-		id: taskID,
-		title: taskTitle,
+		id:          taskID,
+		title:       taskTitle,
 		description: taskDescription,
-		priority: taskPriority,
-		stage: taskStage,
+		priority:    taskPriority,
+		stage:       taskStage,
 	}, nil
 }
 

@@ -5,13 +5,13 @@ import (
 	"testing"
 )
 
-func TestNewStage(t * testing.T) {
+func TestNewStage(t *testing.T) {
 	data := []struct {
 		testName string
-		value string
+		value    string
 		expected string
-		errMsg string
-	} {
+		errMsg   string
+	}{
 		{"Create TODO stage", domain.StageTodo, domain.StageTodo, ""},
 		{"Create In Progress stage", domain.StageInProgress, domain.StageInProgress, ""},
 		{"Create Done", domain.StageDone, domain.StageDone, ""},

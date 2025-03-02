@@ -48,7 +48,10 @@ jobs:
         run: |
           TEST_PACKAGES=$(go list ./... | grep -v '/tests/' || echo "")
           echo "TEST_PACKAGES=$TEST_PACKAGES" >> $GITHUB_ENV
-      
+
+      - name: Install mockgen
+        run: go install go.uber.org/mock/mockgen@latest
+
       - name: Update mocks
         run: make generate
         working-directory: backend

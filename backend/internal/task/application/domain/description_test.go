@@ -8,7 +8,7 @@ import (
 )
 
 func TestNewDescription(t *testing.T) {
-	var maxDescription = strings.Repeat("a", domain.MAX_DESCRIPTION_LENGTH)
+	var maxDescription = strings.Repeat("a", domain.MaxDescriptionLength)
 
 	data := []struct {
 		testName string
@@ -18,7 +18,7 @@ func TestNewDescription(t *testing.T) {
 	}{
 		{"Create description object", "test description", "test description", ""},
 		{"Cannot create empty description", "", "", "description must not be empty"},
-		{"Too long description", maxDescription + "a", "", fmt.Sprintf("description must be at most %d characters", domain.MAX_DESCRIPTION_LENGTH)},
+		{"Too long description", maxDescription + "a", "", fmt.Sprintf("description must be at most %d characters", domain.MaxDescriptionLength)},
 		{"Max length description", maxDescription, maxDescription, ""},
 	}
 

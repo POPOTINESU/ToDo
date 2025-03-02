@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-const MAX_DESCRIPTION_LENGTH = 255
+const MaxDescriptionLength = 255
 
 type Description struct {
 	value string
@@ -26,8 +26,8 @@ func validateDescription(description string) error {
 		return errors.New("description must not be empty")
 	}
 
-	if len(description) > MAX_DESCRIPTION_LENGTH {
-		return fmt.Errorf(fmt.Sprintf("description must be at most %d characters", MAX_DESCRIPTION_LENGTH))
+	if len(description) > MaxDescriptionLength {
+		return fmt.Errorf(fmt.Sprintf("description must be at most %d characters", MaxDescriptionLength))
 	}
 
 	return nil

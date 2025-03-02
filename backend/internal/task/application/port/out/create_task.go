@@ -14,6 +14,6 @@ type CreateTaskDTO struct {
 	Stage       string
 }
 
-type CreateTaskPort[T any] interface {
+type ICreateTaskPort[T any] interface {
 	Create(ctx context.Context, dto *CreateTaskDTO, tx T) (uuid.UUID, error)
 }

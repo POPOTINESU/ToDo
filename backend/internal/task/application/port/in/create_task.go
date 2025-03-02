@@ -13,6 +13,6 @@ type CreateTaskDTO struct {
 	Stage string `json:"stage"`
 }
 
-type CreateTaskUseCase interface {
+type ICreateTaskUseCase interface {
 	Execute(ctx context.Context, dto *CreateTaskDTO) (uuid.UUID, error)
 }

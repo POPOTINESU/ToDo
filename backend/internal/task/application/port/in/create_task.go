@@ -1,3 +1,4 @@
+//go:generate mockgen -source=create_task.go -typed=true -destination=./mocks/create_task_mock.go
 package in
 
 import (

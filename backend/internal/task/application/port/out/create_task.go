@@ -1,6 +1,7 @@
 package out
 
 import (
+	"ToDo/pkg"
 	"context"
 
 	"github.com/google/uuid"
@@ -14,6 +15,6 @@ type CreateTaskDTO struct {
 	Stage       string
 }
 
-type ICreateTaskPort[T any] interface {
+type CreateTaskPort[T pkg.Tx] interface {
 	Create(ctx context.Context, dto *CreateTaskDTO, tx T) (uuid.UUID, error)
 }

@@ -48,6 +48,9 @@ jobs:
         run: |
           TEST_PACKAGES=$(go list ./... | grep -v '/tests/' || echo "")
           echo "TEST_PACKAGES=$TEST_PACKAGES" >> $GITHUB_ENV
+      
+      - name: Update mocks
+        run: make generate
 
       - name: Run Unit Tests
         if: ${{ env.TEST_PACKAGES != '' }}
